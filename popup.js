@@ -1,12 +1,15 @@
-// adding a new bookmark row to the popup
-const addNewBookmark = () => {};
+document.addEventListener('DOMContentLoaded', function () {
+    // Get button by ID
+    var button = document.getElementById('newMessageButton');
+    button.onclick = injectScript;
+});
 
-const viewBookmarks = () => {};
+async function injectScript() {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    await chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        files: ['alert.js']
+    });
+    window.close();
+}
 
-const onPlay = e => {};
-
-const onDelete = e => {};
-
-const setBookmarkAttributes =  () => {};
-
-document.addEventListener("DOMContentLoaded", () => {});
